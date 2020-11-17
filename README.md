@@ -1,5 +1,6 @@
 # DraftkingsNFL-PredicitonModel
 
+## Planning
 ### Requirements
 1. Backtest-able: The strategy should be fully backtest-able. We should be able to validate that any changes made to any part of the pipeline lead to better performance than in the past.
 2. Human Intervention: Zero “expert knowledge” should be required. For instance, if LeBron has consistently underperformed when matched up against Kawhi, the strategy should figure this out, rather than being told-so explicitly.
@@ -23,3 +24,14 @@
 7. Team Selection: We run a linear-optimization (maximize predicted fantasy points subject to salary and position constraints) to produce the team we will enter.
 
 These above Requirements and Steps were taken from https://towardsdatascience.com/creating-a-fully-automated-daily-fantasy-sports-strategy-6842d2e1ccb6
+
+
+## Data
+### Player Data
+### Team Data
+
+### DraftKings Data
+The data for any given draftkings contest can be retrieved from a csv file provided on their website. 
+
+### DraftKings Rules
+Rules vary by contest, so a hardcode file is likely the best option to determine scoring. Most importantly, there is a salary cap of $50,000.
