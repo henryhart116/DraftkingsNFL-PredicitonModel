@@ -27,6 +27,8 @@ These above Requirements and Steps were taken from https://towardsdatascience.co
 
 
 ## Data
+Most data will likely need to be scraped using some python XML or HTML tool.
+
 ### Player Data
 ### Team Data
 
