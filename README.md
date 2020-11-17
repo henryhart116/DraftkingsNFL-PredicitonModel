@@ -8,6 +8,11 @@
 5. Fast: Development should be fluid — each step of the pipeline should be able to run independently, and long-running or I/O intensive segments should be performed infrequently and offline.
 6. Automated (Optional): The entire pipeline should be automated, including entering competitions. 
 
+### Goals
+* Initially limit games to only showdown 50/50 and double ups. Advance to full lineup 50/50 and double ups.
+* Profitability: win rate over 50%
+* Above Average Results: win rate over Draftkings average %
+
 ### Steps
 1. Stats Retrieval: We start by retrieving historical data that we will use as the basis for making per-player predictions. For the NBA, this includes per-game player and team stats scraped from basketball-reference, as well as auxiliary data such as betting lines and predicted starting lineups.
 2. Feature Creation: Using these stats, we construct derived Features that will be the basis of the learning algorithm.
