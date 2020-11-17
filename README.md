@@ -21,3 +21,5 @@
 5. Prediction Feature Creation: Apply the same process we use to create Features to transform roster data into the same exact Features we used to create the player model.
 6. Prediction: Using the model we created earlier and the PredictionFeatures, we make fantasy point predictions.
 7. Team Selection: We run a linear-optimization (maximize predicted fantasy points subject to salary and position constraints) to produce the team we will enter.
+
+These above Requirements and Steps were taken from https://towardsdatascience.com/creating-a-fully-automated-daily-fantasy-sports-strategy-6842d2e1ccb6
