@@ -6,7 +6,7 @@
 3. Replicable: Any data used should be public information (i.e., no subscription services, no private historical data like cash lines).
 4. Scalable: The pipeline should scale to multiple platforms and sports with minimal additional work.
 5. Fast: Development should be fluid — each step of the pipeline should be able to run independently, and long-running or I/O intensive segments should be performed infrequently and offline.
-6. Automated: The entire pipeline should be automated, including entering competitions. (Optional)
+6. Automated (Optional): The entire pipeline should be automated, including entering competitions. 
 
 ### Steps
 1. Stats Retrieval: We start by retrieving historical data that we will use as the basis for making per-player predictions. For the NBA, this includes per-game player and team stats scraped from basketball-reference, as well as auxiliary data such as betting lines and predicted starting lineups.
