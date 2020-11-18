@@ -29,10 +29,10 @@ These above Requirements and Steps were taken from https://towardsdatascience.co
 ## Data
 Most data will likely need to be scraped using some python XML or HTML tool.
 
-### Historical Player Data
-https://fantasydata.com/nfl/fantasy-football-leaders?season=2020&seasontype=1&scope=4&subscope=1&scoringsystem=4&aggregatescope=2&range=3
+### Historical Player Data 
+https://github.com/maksimhorowitz/nflscrapR
 
-This website includes link to download csv file of player stat averages over previous x weeks, as well as DK points per game over previous x weeks. 
+This repository contains webscraping R tool to import all NFL game stats over any year since 2009.
 
 ### Team Data
 https://www.pro-football-reference.com/years/2020/opp.htm
@@ -40,9 +40,16 @@ https://www.pro-football-reference.com/years/2020/opp.htm
 This website has defensive stats per game for each team for the season so far.
 
 ### Vegas Odds
+https://www.vegasinsider.com/nfl/odds/las-vegas/
+
+This website has current weeks spread in column 2 item 3 for each game.
 
 ### DraftKings Data
 The data for any given draftkings contest can be retrieved from a csv file provided on their website. 
+
+https://fantasydata.com/nfl/fantasy-football-leaders?season=2020&seasontype=1&scope=4&subscope=1&scoringsystem=4&aggregatescope=2&range=3
+
+This website includes link to download csv file of player stat averages over previous x weeks, as well as DK points per game over previous x weeks. This will be joined to the roster data to predict fantasy points of each player.
 
 ### DraftKings Rules
 Rules vary by contest, so a hardcode file is likely the best option to determine scoring. Most importantly, there is a salary cap of $50,000.
@@ -50,7 +57,7 @@ Rules vary by contest, so a hardcode file is likely the best option to determine
 ## Plan
 1. Import data and create features for players and the opposition defense
 2. Create rules for creating lineup and scoring
-3. Create ML model
+3. Create ML model (will need to use scoring rules to determine a players actual fantasy points and their predict one from the model)
 4. Import the draftkings roster and join to players' respective data
 5. Perform prediction of fantasy points using the model
 6. Team-selection: run an optimizer to find the best lineup (maximize predicted fantasy points subject to salary and position constraints), look into genetic algorithm
