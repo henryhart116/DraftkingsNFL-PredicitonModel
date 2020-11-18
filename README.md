@@ -64,9 +64,15 @@ Rules vary by contest, so a hardcode file is likely the best option to determine
 
 ## Resources
 https://towardsdatascience.com/creating-a-fully-automated-daily-fantasy-sports-strategy-6842d2e1ccb6
+
 https://datashoptalk.com/double-yo-money/
+
 https://medium.com/runkeeper-everyone-every-run/hacking-the-optimal-draftkings-lineup-45628a405a5f
+
 http://web.stanford.edu/class/archive/cs/cs221/cs221.1192/2018/restricted/posters/macdow/poster.pdf
+
 https://github.com/maksimhorowitz/nflscrapR
+
 https://github.com/zzhangusf/Predicting-Fantasy-Football-Points-Using-Machine-Learning/blob/master/README.md
+
 https://towardsdatascience.com/using-machine-learning-to-predict-fantasy-football-points-72f77cb0678a
