@@ -29,11 +29,29 @@ These above Requirements and Steps were taken from https://towardsdatascience.co
 ## Data
 Most data will likely need to be scraped using some python XML or HTML tool.
 
-### Player Data
+### Historical Player Data
+https://fantasydata.com/nfl/fantasy-football-leaders?season=2020&seasontype=1&scope=4&subscope=1&scoringsystem=4&aggregatescope=2&range=3
+
+This website includes link to download csv file of player stat averages over previous x weeks, as well as DK points per game over previous x weeks. 
+
 ### Team Data
+https://www.pro-football-reference.com/years/2020/opp.htm
+
+This website has defensive stats per game for each team for the season so far.
+
+### Vegas Odds
 
 ### DraftKings Data
 The data for any given draftkings contest can be retrieved from a csv file provided on their website. 
 
 ### DraftKings Rules
 Rules vary by contest, so a hardcode file is likely the best option to determine scoring. Most importantly, there is a salary cap of $50,000.
+
+## Plan
+1. Import data and create features for players and the opposition defense
+2. Create rules for creating lineup and scoring
+3. Create ML model
+4. Import the draftkings roster and join to players' respective data
+5. Perform prediction of fantasy points using the model
+6. Team-selection: run an optimizer to find the best lineup (maximize predicted fantasy points subject to salary and position constraints), look into genetic algorithm
+
