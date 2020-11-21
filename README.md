@@ -49,6 +49,8 @@ The data for any given draftkings contest can be retrieved from a csv file provi
 
 https://fantasydata.com/nfl/fantasy-football-leaders?season=2020&seasontype=1&scope=4&subscope=1&scoringsystem=4&aggregatescope=2&range=3
 
+https://www.footballdb.com/statistics/nfl/player-stats/passing/2020/regular-season
+
 This website includes link to download csv file of player stat averages over previous x weeks, as well as DK points per game over previous x weeks. This will be joined to the roster data to predict fantasy points of each player.
 
 ### DraftKings Rules
