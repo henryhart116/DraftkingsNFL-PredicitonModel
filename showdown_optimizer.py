@@ -4,26 +4,27 @@ import pandas as pd
 import math
 from gurobipy import *
 pd.set_option('display.max_columns', None)
-week11_data = pd.read_csv("DFF_NFL_cheatsheet_2020-11-22.csv")
+week11_data = pd.read_csv("DFF_NFL_cheatsheet_2020-11-26.csv")
 week11_data = week11_data.drop(columns=["slate","ppg_actual","value_actual"])
 week11_data['Name'] = week11_data['first_name']+' '+week11_data['last_name'].fillna('')
 week11_data = week11_data.drop(columns=["first_name","last_name"])
-team1 = week11_data[week11_data['team']=='KC'].reset_index()
-team2 = week11_data[week11_data['team']=='LV'].reset_index()
-
+#week11_data = week11_data[week11_data['position']!="QB"]
+week11_data = week11_data[week11_data['Name']!="Matthew Stafford"]
+team1 = week11_data[week11_data['team']=='HOU'].reset_index()
+team2 = week11_data[week11_data['team']=='DET'].reset_index()
 dk_matchup = pd.read_csv("DKSalaries (1).csv")
 dk_matchup = dk_matchup[dk_matchup['Roster Position']=='FLEX']
+
 team1 = team1.join(dk_matchup.set_index('Name'),on='Name')
 team1 = team1.drop(columns=['Position','Name + ID','ID','Roster Position','Game Info','TeamAbbrev','salary'])
 team2 = team2.join(dk_matchup.set_index('Name'),on='Name')
 team2 = team2.drop(columns=['Position','Name + ID','ID','Roster Position','Game Info','TeamAbbrev','salary'])
-
+print(team2)
 
 team1['CPT_salary'] = team1["Salary"]*1.5
 team1['CPT_ppg'] = team1['ppg_projection']*1.5
 team2['CPT_salary'] = team2["Salary"]*1.5
 team2['CPT_ppg'] = team2['ppg_projection']*1.5
-
 # Creating dictionaries for variables and constraints
 team1_reg_dict = {}
 for num in range(len(team1)):
@@ -85,12 +86,47 @@ m.update()
 obj = quicksum(t1_reg[i]*team1_reg_dict[i] for i in t1_player)+quicksum(t2_reg[i]*team2_reg_dict[i] for i in t2_player)+quicksum(t1_cpt[i]*team1_cpt_dict[i] for i in t1_player)+quicksum(t2_cpt[i]*team2_cpt_dict[i] for i in t2_player)
 
 m.setObjective(obj,GRB.MAXIMIZE)
-m.optimize()
+#m.optimize()
 
 # Print solution
-if m.status == GRB.Status.OPTIMAL:
+#if m.status == GRB.Status.OPTIMAL:
 #    Retrieve variables value
-    print('Player Lineup')
+#    print('Player Lineup')
+#    for v in m.getVars():
+#        if v.x > 0:
+#            print('%s = %g' % (v.varName, v.x))
+m.setParam(GRB.Param.PoolSolutions, 20)
+# Limit the search space by setting a gap for the worst possible solution
+# that will be accepted
+m.setParam(GRB.Param.PoolGap, 0.10)
+# do a systematic search for the k-best solutions
+m.setParam(GRB.Param.PoolSearchMode, 2)
+
+# Optimize
+m.optimize()
+
+m.setParam(GRB.Param.OutputFlag, 0)
+
+# Status checking
+status = m.Status
+if status in (GRB.INF_OR_UNBD, GRB.INFEASIBLE, GRB.UNBOUNDED):
+    print('The m cannot be solved because it is infeasible or '
+          'unbounded')
+    sys.exit(1)
+
+if status != GRB.OPTIMAL:
+    print('Optimization was stopped with status ' + str(status))
+    sys.exit(1)
+
+# Print number of solutions stored
+nSolutions = m.SolCount
+print('Number of solutions found: ' + str(nSolutions))
+
+# Print objective values of solutions
+for e in range(nSolutions):
+    m.setParam(GRB.Param.SolutionNumber, e)
+    print('%g ' % m.PoolObjVal, end='')
+    print('')
     for v in m.getVars():
-        if v.x > 0:
+        if v.xn > 0.9:
             print('%s = %g' % (v.varName, v.x))
